@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';  // Import Axios for API requests
-
+import React, { useEffect, useState } from "react";
+import axios from "axios"; // Import Axios for API requests
 
 const TaskCard = () => {
+  const [tasks, setTasks] = useState < [] > [];
 
-  const [tasks, setTasks] = useState<[]>([]); 
-
- 
   const fetchTasks = async () => {
     try {
-      
-      const response = await axios.get('https://66f3291b71c84d8058780204.mockapi.io/tasks');
-      console.log("Fetched tasks:", response.data); 
-      setTasks(response.data); 
+      const response = await axios.get(
+        "https://66f3291b71c84d8058780204.mockapi.io/tasks"
+      );
+      console.log("Fetched tasks:", response.data);
+      setTasks(response.data);
     } catch (error) {
-      console.error('Error fetching tasks:', error);  
+      console.error("Error fetching tasks:", error);
     }
   };
 
   useEffect(() => {
-    fetchTasks();  
-  }, []);  
+    fetchTasks();
+  }, []);
 
   return (
     <div>
-      <h1>Task Manager</h1>
       <p>Total tasks: {tasks.length}</p>
       <div>
         <h2>Task Column</h2>
@@ -34,7 +31,7 @@ const TaskCard = () => {
               <h3>{task.title}</h3>
               <p>{task.description}</p>
               <p>{task.completed ? "Completed" : "Not Completed"}</p>
-              <p>Priority: {task.priority || 'Medium'}</p> 
+              <p>Priority: {task.priority || "Medium"}</p>
             </div>
           ))
         ) : (

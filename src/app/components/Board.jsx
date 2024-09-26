@@ -89,7 +89,6 @@ const Board = ({ currentUrl }) => {
 
   return (
     <div>
-      <h1>Task Manager</h1>
       <form onSubmit={handleCreateTask} className="task-form">
         <input
           type="text"
