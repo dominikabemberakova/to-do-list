@@ -3,25 +3,195 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f7f7;
+  --foreground: #333333;
+  --primary-color: #4CAF50; /* Jemná zelená pre tlačidlá */
+  --completed-bg: #d3f8d3; /* Svetlá zelená pre dokončené úlohy */
+  --pending-bg: #ffe6e6; /* Svetlá ružová pre nedokončené úlohy */
+  --border-color: #dddddd; /* Svetlá hranica pre elementy */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #1c1c1e;
     --foreground: #ededed;
+    --primary-color: #66bb6a;
+    --completed-bg: #2e7d32;
+    --pending-bg: #c62828;
+    --border-color: #444444;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Arial', Helvetica, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Vstupy a tlačidlá */
+input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: inherit;
+  color: var(--foreground);
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: white;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Tlačidlá */
+button {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: darken(var(--primary-color), 10%);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.header p {
+  font-size: 1rem;
+  color: var(--foreground);
+}
+
+.header form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.header input {
+  flex: 1;
+  max-width: 300px;
+}
+
+.header button {
+  background-color: var(--primary-color);
+}
+
+/* Center content nad oba stĺpce */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-container h2 {
+  text-align: center;
+}
+
+/* Container pre stĺpec (Column) */
+.column-container {
+  flex: 1;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+.column-container h2 {
+  font-size: 1.25rem;
+  color: var(--foreground);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Karta pre jednotlivé tasky */
+.task-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--pending-bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Nedokončené úlohy (Pending) */
+.task-pending {
+  background-color: var(--pending-bg);
+}
+
+/* Dokončené úlohy (Completed) */
+.task-completed {
+  background-color: var(--completed-bg);
+}
+
+/* Preškrtnutie textu pre dokončené úlohy */
+.task-completed .task-title,
+.task-completed .task-description {
+  text-decoration: line-through;
+  color: #777777;
+}
+
+/* Text pre tasky */
+.task-title {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.task-description {
+  color: #666666;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Layout pre tlačidlá a akcie */
+.task-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+/* Tlačidlá pre jednotlivé akcie */
+.task-actions button {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.task-actions button:hover {
+  background-color: var(--primary-color);
+  color: white;
 }
