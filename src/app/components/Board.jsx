@@ -4,7 +4,7 @@ import { getTasks, createTask, updateTask, deleteTask } from '../services/api';
 
 const Board = ({currentUrl}) => {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState({ title: '', description: '' });
+  const [newTask, setNewTask] = useState({ title: '', description: '', priority: 'Medium', dueDate: '', completed: false });
 
  
   useEffect(() => {
@@ -29,8 +29,8 @@ const Board = ({currentUrl}) => {
     }
     try {
       await createTask(currentUrl, { ...newTask, completed: false }); 
-      setNewTask({ title: '', description: '' }); 
-      fetchTasks(); 
+      setNewTask({ title: '', description: '', priority: 'Medium', dueDate: '', completed: false });  
+      fetchTasks();
     } catch (error) {
       console.error('Error creating task:', error);
     }
@@ -90,6 +90,21 @@ const Board = ({currentUrl}) => {
           onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
           required
         />
+        <select
+          value={newTask.priority}
+          onChange={(e) => setNewTask({ ...newTask, priority: e.target.value })}
+        >
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+
+        <input
+          type="date"
+          value={newTask.dueDate}
+          onChange={(e) => setNewTask({ ...newTask, dueDate: e.target.value })}
+        />
+
         <button type="submit">Add Task</button>
       </form>
 

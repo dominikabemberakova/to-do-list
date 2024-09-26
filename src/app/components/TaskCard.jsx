@@ -33,6 +33,8 @@ const TaskCard = () => {
             <div key={task.id}>
               <h3>{task.title}</h3>
               <p>{task.description}</p>
+              <p>{task.completed ? "Completed" : "Not Completed"}</p>
+              <p>Priority: {task.priority || 'Medium'}</p> 
             </div>
           ))
         ) : (

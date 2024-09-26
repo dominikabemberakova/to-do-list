@@ -175,7 +175,6 @@ button:hover {
   margin-top: 0.25rem;
 }
 
-/* Layout pre tlačidlá a akcie */
 .task-actions {
   display: flex;
   justify-content: flex-start;
@@ -183,7 +182,6 @@ button:hover {
   margin-top: 0.5rem;
 }
 
-/* Tlačidlá pre jednotlivé akcie */
 .task-actions button {
   background-color: transparent;
   color: var(--primary-color);
@@ -194,4 +192,16 @@ button:hover {
 .task-actions button:hover {
   background-color: var(--primary-color);
   color: white;
+}
+
+.priority-low {
+  background-color: lightgreen;
+}
+
+.priority-medium {
+  background-color: lightyellow;
+}
+
+.priority-high {
+  background-color: lightcoral;
 }
