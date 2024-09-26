@@ -82,8 +82,12 @@ const Column = ({ title, tasks, onMoveTask, onEditTask, onDeleteTask }) => {
               <div>
                 <h3 className="task-title">{task.title}</h3>
                 <p className="task-description">{task.description}</p>
-                <p>Priority: {task.priority || "Medium"}</p>
-                <p>Due Date: {task.dueDate || "No due date set"}</p>
+                <p className="task-meta">
+                  Priority: {task.priority || "Medium"}
+                </p>
+                <p className="task-meta">
+                  Due Date: {task.dueDate || "No due date set"}
+                </p>
 
                 <div className="task-actions">
                   <button onClick={() => onMoveTask(task.id, !task.completed)}>

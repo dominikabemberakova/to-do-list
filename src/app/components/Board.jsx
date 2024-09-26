@@ -20,7 +20,7 @@ const Board = ({ currentUrl }) => {
   const fetchTasks = async () => {
     try {
       const response = await getTasks(currentUrl);
-      setTasks(response.data);
+      setTasks(response.data.reverse());
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
@@ -33,7 +33,12 @@ const Board = ({ currentUrl }) => {
       return;
     }
     try {
-      await createTask(currentUrl, { ...newTask, completed: false });
+      const response = await createTask(currentUrl, {
+        ...newTask,
+        completed: false,
+      });
+      const createdTask = response.data;
+      setTasks([createdTask, ...tasks]);
       setNewTask({
         title: "",
         description: "",
@@ -78,10 +83,14 @@ const Board = ({ currentUrl }) => {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
     <div>
       <h1>Task Manager</h1>
-      <form onSubmit={handleCreateTask}>
+      <form onSubmit={handleCreateTask} className="task-form">
         <input
           type="text"
           name="title"

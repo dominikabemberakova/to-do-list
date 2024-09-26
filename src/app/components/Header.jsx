@@ -1,11 +1,10 @@
-'use client'
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { getTasks } from '../services/api';
+import React, { useEffect, useState } from "react";
+import { getTasks } from "../services/api";
 
-const Header = ({currentUrl}) => {
+const Header = ({ currentUrl }) => {
   const [taskCount, setTaskCount] = useState(0);
-
 
   useEffect(() => {
     fetchTaskCount();
@@ -14,9 +13,9 @@ const Header = ({currentUrl}) => {
   const fetchTaskCount = async () => {
     try {
       const response = await getTasks(currentUrl);
-      setTaskCount(response.data.length);  
+      setTaskCount(response.data.length);
     } catch (error) {
-      console.error('Error fetching task count:', error);
+      console.error("Error fetching task count:", error);
     }
   };
 
