@@ -4,6 +4,8 @@
 
 This is a **React**-based to-do list application that allows users to create, manage their tasks. It supports both **light** and **dark mode**, and users can categorize tasks into "Work" and "Personal" sections. Tasks can be marked as complete, edited, and deleted as needed. The application also allows users to set task priorities as **Low**, **Medium**, or **High**. This application uses **MockAPI** for storing and managing tasks.
 
+### Deployed to Vercel : https://to-do-list-ruddy-one.vercel.app/
+
 ## Features
 
 - Create tasks with a title, description, priority (Low, Medium, High), and due date.
