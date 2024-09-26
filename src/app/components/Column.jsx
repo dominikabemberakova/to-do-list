@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Column = ({ title, tasks, onMoveTask, onEditTask, onDeleteTask }) => {
-  const [editingTaskId, setEditingTaskId] = useState(null); 
-  const [editedTask, setEditedTask] = useState({ title: '', description: '', priority: 'Medium' });  
+  const [editingTaskId, setEditingTaskId] = useState(null);
+  const [editedTask, setEditedTask] = useState({
+    title: "",
+    description: "",
+    priority: "Medium",
+  });
 
   const startEditing = (task) => {
-    setEditingTaskId(task.id); 
-    setEditedTask({ title: task.title, description: task.description, priority: task.priority || 'Medium' });  
+    setEditingTaskId(task.id);
+    setEditedTask({
+      title: task.title,
+      description: task.description,
+      priority: task.priority || "Medium",
+    });
   };
 
   const handleEditInputChange = (e) => {
-    setEditedTask({ ...editedTask, [e.target.name]: e.target.value }); 
+    setEditedTask({ ...editedTask, [e.target.name]: e.target.value });
   };
 
   const saveTaskChanges = () => {
-    if (editedTask.title.trim() === '' || editedTask.description.trim() === '') {
+    if (
+      editedTask.title.trim() === "" ||
+      editedTask.description.trim() === ""
+    ) {
       alert("Title and description cannot be empty.");
-      return; 
+      return;
     }
-    onEditTask(editingTaskId, editedTask);  
-    setEditingTaskId(null);  
+    onEditTask(editingTaskId, editedTask);
+    setEditingTaskId(null);
   };
 
   return (
@@ -29,8 +40,10 @@ const Column = ({ title, tasks, onMoveTask, onEditTask, onDeleteTask }) => {
         {tasks.map((task) => (
           <div
             key={task.id}
-            className={`task-card ${task.completed ? 'task-completed' : 'task-pending'} priority-${(task.priority || 'Medium').toLowerCase()}`} 
-            >
+            className={`task-card ${
+              task.completed ? "task-completed" : "task-pending"
+            } priority-${(task.priority || "Medium").toLowerCase()}`}
+          >
             {editingTaskId === task.id ? (
               <div>
                 <input
@@ -69,12 +82,12 @@ const Column = ({ title, tasks, onMoveTask, onEditTask, onDeleteTask }) => {
               <div>
                 <h3 className="task-title">{task.title}</h3>
                 <p className="task-description">{task.description}</p>
-                <p>Priority: {task.priority || 'Medium'}</p>  
-                <p>Due Date: {task.dueDate || 'No due date set'}</p> 
+                <p>Priority: {task.priority || "Medium"}</p>
+                <p>Due Date: {task.dueDate || "No due date set"}</p>
 
                 <div className="task-actions">
                   <button onClick={() => onMoveTask(task.id, !task.completed)}>
-                    {task.completed ? 'Mark as Incomplete' : 'Mark as Complete'}
+                    {task.completed ? "Mark as Incomplete" : "Mark as Complete"}
                   </button>
                   <button onClick={() => startEditing(task)}>Edit</button>
                   <button onClick={() => onDeleteTask(task.id)}>Delete</button>

@@ -5,7 +5,7 @@
 :root {
   --background: #f7f7f7;
   --foreground: #333333;
-  --primary-color: #4CAF50; /* Jemná zelená pre tlačidlá */
+  --primary-color: #4caf50; /* Jemná zelená pre tlačidlá */
   --completed-bg: #d3f8d3; /* Svetlá zelená pre dokončené úlohy */
   --pending-bg: #ffe6e6; /* Svetlá ružová pre nedokončené úlohy */
   --border-color: #dddddd; /* Svetlá hranica pre elementy */
@@ -25,14 +25,16 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Arial', Helvetica, sans-serif;
+  font-family: "Arial", Helvetica, sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
 /* Vstupy a tlačidlá */
-input, select, textarea {
+input,
+select,
+textarea {
   font-family: inherit;
   font-size: 100%;
   font-weight: 400;
@@ -47,7 +49,9 @@ input, select, textarea {
   transition: border-color 0.3s ease;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-color: var(--primary-color);
   outline: none;
 }
@@ -122,7 +126,7 @@ button:hover {
 .column-container {
   flex: 1;
   padding: 1rem;
-  background-color: white;
+  background-color: inherit;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   margin: 1rem;
@@ -204,4 +208,41 @@ button:hover {
 
 .priority-high {
   background-color: lightcoral;
+}
+
+/* Light mode */
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+/* Button dedičnosť */
+.light-mode button {
+  background-color: #007bff;
+  color: white;
+}
+
+.dark-mode button {
+  background-color: #444;
+  color: white;
+}
+
+.light-mode input,
+.light-mode select,
+.light-mode button {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode input,
+.dark-mode select,
+.dark-mode button {
+  background-color: #333;
+  color: white;
 }
