@@ -14,42 +14,45 @@ const Navbar = ({ newCurrentPage }) => {
   ];
 
   return (
-    <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4">
-      <h1 className="w-full text-3xl font-bold text-[#00df9a]">TO DO LIST</h1>
+    <div className="flex justify-between items-center h-24 px-4">
+      <h1 className="text-3xl font-bold text-[#5f33a0]">TO DO LIST</h1>
 
-      <ul className="hidden md:flex">
-        {navItems.map((item) => (
-          <li
-            key={item.id}
-            className="p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black"
-            onClick={() => newCurrentPage(item.text)}
-          >
-            {item.text}
-          </li>
-        ))}
-      </ul>
+      <div className="hidden md:flex">
+        <ul className="flex">
+          {navItems.map((item) => (
+            <li
+              key={item.id}
+              className="p-4 hover:bg-[#dbcdf0] rounded-xl m-2 cursor-pointer duration-300 hover:text-black"
+              onClick={() => newCurrentPage(item.text)}
+            >
+              {item.text}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <div onClick={handleNav} className="block md:hidden">
+      <div onClick={handleNav} className="md:hidden">
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
       </div>
 
-      <ul
-        className={
-          nav
-            ? "fixed md:hidden left-0 top-0 w-[60%] h-full border-r bg-inherit ease-in-out duration-500"
-            : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%]"
-        }
-      >
-        {navItems.map((item) => (
-          <li
-            key={item.id}
-            className="p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600"
-            onClick={() => newCurrentPage(item.text)}
-          >
-            {item.text}
-          </li>
-        ))}
-      </ul>
+      {nav && (
+        <div className="fixed top-0 left-0 w-full h-full bg-inherit z-10">
+          <ul className="flex flex-col items-center justify-center h-full">
+            {navItems.map((item) => (
+              <li
+                key={item.id}
+                className="p-4 text-2xl hover:bg-[#00df9a] rounded-xl duration-300 hover:text-black cursor-pointer"
+                onClick={() => {
+                  newCurrentPage(item.text);
+                  setNav(false);
+                }}
+              >
+                {item.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

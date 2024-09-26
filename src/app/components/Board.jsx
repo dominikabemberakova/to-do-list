@@ -123,21 +123,23 @@ const Board = ({ currentUrl }) => {
         />
         <button type="submit">Add Task</button>
       </form>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <Column
-          title="To Do"
-          tasks={tasks.filter((task) => task.completed === false)}
-          onMoveTask={handleMoveTask}
-          onEditTask={handleEditTask}
-          onDeleteTask={handleDeleteTask}
-        />
-        <Column
-          title="Done"
-          tasks={tasks.filter((task) => task.completed === true)}
-          onMoveTask={handleMoveTask}
-          onEditTask={handleEditTask}
-          onDeleteTask={handleDeleteTask}
-        />
+      <div className="main-container">
+        <div className="columns-wrapper">
+          <Column
+            title="To Do"
+            tasks={tasks.filter((task) => task.completed === false)}
+            onMoveTask={handleMoveTask}
+            onEditTask={handleEditTask}
+            onDeleteTask={handleDeleteTask}
+          />
+          <Column
+            title="Done"
+            tasks={tasks.filter((task) => task.completed === true)}
+            onMoveTask={handleMoveTask}
+            onEditTask={handleEditTask}
+            onDeleteTask={handleDeleteTask}
+          />
+        </div>
       </div>
     </div>
   );
